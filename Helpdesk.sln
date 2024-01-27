@@ -8,10 +8,16 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helpdesk.Api", "src\Helpdesk.Api\Helpdesk.Api.csproj", "{C94803BC-E26F-4D9A-948F-4AA5DF2AAFCE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helpdesk.Application", "src\Helpdesk.Application\Helpdesk.Application.csproj", "{F003F883-423E-4065-9B11-85E0A69AFF2A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{132615B1-2892-4813-8962-92CA7F37E5F7} = {132615B1-2892-4813-8962-92CA7F37E5F7}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helpdesk.Core", "src\Helpdesk.Core\Helpdesk.Core.csproj", "{132615B1-2892-4813-8962-92CA7F37E5F7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helpdesk.Infrastructure", "src\Helpdesk.Infrastructure\Helpdesk.Infrastructure.csproj", "{282FDCC0-3883-461E-85C5-75FCDA3A0532}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F003F883-423E-4065-9B11-85E0A69AFF2A} = {F003F883-423E-4065-9B11-85E0A69AFF2A}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
