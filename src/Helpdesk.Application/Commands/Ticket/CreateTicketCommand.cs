@@ -2,7 +2,7 @@ using MediatR;
 
 namespace Helpdesk.Application.Commands.Ticket;
 
-public record CreateTicketCommand(
+public sealed record CreateTicketCommand(
     Guid CreatorId, 
     string Title, 
     string Content, 

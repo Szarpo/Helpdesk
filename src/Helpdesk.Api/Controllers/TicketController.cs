@@ -1,13 +1,11 @@
-using Helpdesk.Application.Commands;
 using Helpdesk.Application.Commands.Ticket;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Helpdesk.Api.Controllers;
 
-
-[Route("ticket")]
 [ApiController]
+[Route("api/[controller]")]
 public class TicketController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -21,7 +19,8 @@ public class TicketController : ControllerBase
     [HttpPost]
     public async Task<ActionResult> CreateTicket([FromBody] CreateTicketCommand command)
     {
+        Console.WriteLine("JESTEM!");
         await _mediator.Send(command);
-        return NoContent();
+        return Ok();
     }
 }

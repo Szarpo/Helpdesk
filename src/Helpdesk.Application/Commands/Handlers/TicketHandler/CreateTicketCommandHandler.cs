@@ -1,5 +1,5 @@
 using Helpdesk.Application.Commands.Ticket;
-using Helpdesk.Core.Abstractions;using Helpdesk.Core.Entities;
+using Helpdesk.Core.Abstractions;
 using Helpdesk.Core.Repositories;
 using MediatR;
 
@@ -21,7 +21,7 @@ public class CreateTicketCommandHandler : IRequestHandler<CreateTicketCommand>
     {
         var (creatorId, title, content,category,status, state) = request;
 
-        var currentTime = _clock.Current();
+        var currentTime = _clock.Current().AddHours(1);
         
         var createTicket = Core.Entities.Ticket.Create(
             creatorId: creatorId,

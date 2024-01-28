@@ -1,4 +1,4 @@
-namespace Helpdesk.Infrastructure;
+namespace Helpdesk.Infrastructure.DAL.Configurations;
 
 internal sealed class PostgresOptions
 {

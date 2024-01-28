@@ -1,12 +1,24 @@
 using Helpdesk.Core.Entities;
 using Helpdesk.Core.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace Helpdesk.Infrastructure.DAL.Repositories;
 
-public class TicketRepository : ITicketRepository
+internal sealed class TicketRepository : ITicketRepository
 {
-    public Task Add(Ticket ticket)
+
+    private readonly DbSet<Core.Entities.Ticket> _titles;
+    private readonly HelpdeskDbContext _dbContext;
+
+    public TicketRepository(HelpdeskDbContext dbContext)
     {
-        throw new NotImplementedException();
+        _dbContext = dbContext;
+        _titles = _dbContext.Tickets;
+    }
+    
+    public async  Task Add(Ticket ticket)
+    {
+        await _titles.AddAsync(ticket);
+        await _dbContext.SaveChangesAsync();
     }
 }
