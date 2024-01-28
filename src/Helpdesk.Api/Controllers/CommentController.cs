@@ -1,4 +1,6 @@
 using Helpdesk.Application.Commands.CommentCommand;
+using Helpdesk.Application.DTO;
+using Helpdesk.Application.Queries.CommentQuery;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,5 +23,11 @@ public class CommentController : ControllerBase
         await _mediator.Send(command);
         return Ok();
     }
-    
+
+    [HttpGet("{ticketId}")]
+    public async Task<ActionResult<IEnumerable<CommentsDto>>> GetAllCommentByTicketId([FromQuery] Guid ticketId)
+    {
+        var query = new GetCommentsToTicketQuery(ticketId);
+        return Ok(await _mediator.Send(query));
+    }
 }

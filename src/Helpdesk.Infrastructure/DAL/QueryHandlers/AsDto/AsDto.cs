@@ -30,4 +30,11 @@ public static class AsDto
         CreatedAt = entity.CreatedAt,
         ClosedAt = entity.ClosedAt
     };
+
+    public static CommentsDto CommentsByTicketId(this Comment entity) => new()
+    {
+        UserId = entity.UserId,
+        Content = entity.Content,
+        CreatedAt = entity.CreatedAt,
+    };
 }
