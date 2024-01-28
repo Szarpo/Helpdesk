@@ -21,4 +21,13 @@ internal sealed class TicketRepository : ITicketRepository
         await _titles.AddAsync(ticket);
         await _dbContext.SaveChangesAsync();
     }
+
+    public async Task<Ticket> GetById(Guid ticketId) => await _dbContext.Tickets.FirstOrDefaultAsync(x => x.Id == ticketId);
+
+    public Task<bool> IsExistId(Guid ticketId)
+    {
+        throw new NotImplementedException();
+    }
+
+ 
 }

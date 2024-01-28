@@ -21,7 +21,6 @@ public class TicketController : ControllerBase
     [HttpPost]
     public async Task<ActionResult> CreateTicket([FromBody] CreateTicketCommand command)
     {
-        Console.WriteLine("JESTEM!");
         await _mediator.Send(command);
         return Ok();
     }
@@ -31,4 +30,12 @@ public class TicketController : ControllerBase
     {
         return Ok(await _mediator.Send(query));
     }
+
+    [HttpGet("{ticketId}")]
+    public async Task<ActionResult<TicketDto>> GetTicketBytId(Guid ticketId)
+    {
+        var query = new GetTicketByIdQuery(ticketId);
+        return Ok(await _mediator.Send(query));
+    }
+    
 }

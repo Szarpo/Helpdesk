@@ -6,6 +6,7 @@ namespace Helpdesk.Infrastructure.DAL;
 internal sealed class HelpdeskDbContext : DbContext
 {
     public DbSet<Ticket> Tickets { get; set; }
+    public DbSet<Comment> Comments { get; set; }
 
     public HelpdeskDbContext(DbContextOptions<HelpdeskDbContext> options) : base(options)
     {
