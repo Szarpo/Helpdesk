@@ -1,4 +1,6 @@
-using Helpdesk.Application.Commands.Ticket;
+using Helpdesk.Application.Commands.TicketCommand;
+using Helpdesk.Application.DTO;
+using Helpdesk.Application.Queries.TicketQuery;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,5 +24,11 @@ public class TicketController : ControllerBase
         Console.WriteLine("JESTEM!");
         await _mediator.Send(command);
         return Ok();
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<TicketsDto>>> GetTickets([FromQuery] GetTicketsQuery query)
+    {
+        return Ok(await _mediator.Send(query));
     }
 }

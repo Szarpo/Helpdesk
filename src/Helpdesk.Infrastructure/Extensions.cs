@@ -1,3 +1,4 @@
+using System.Reflection;
 using Helpdesk.Core.Abstractions;
 using Helpdesk.Core.Repositories;
 using Helpdesk.Infrastructure.DAL;
@@ -16,6 +17,7 @@ public static class Extensions
         services.AddScoped<IClock, Clock>();
         services.AddScoped<ITicketRepository, TicketRepository>();
         services.AddPostgres(configuration);
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
         
         return services;
     }

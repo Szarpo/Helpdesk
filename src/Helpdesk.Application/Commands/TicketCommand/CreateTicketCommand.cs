@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace Helpdesk.Application.Commands.Ticket;
+namespace Helpdesk.Application.Commands.TicketCommand;
 
 public sealed record CreateTicketCommand(
     Guid CreatorId, 

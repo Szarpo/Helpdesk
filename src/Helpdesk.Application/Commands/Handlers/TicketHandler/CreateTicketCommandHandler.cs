@@ -1,4 +1,4 @@
-using Helpdesk.Application.Commands.Ticket;
+using Helpdesk.Application.Commands.TicketCommand;
 using Helpdesk.Core.Abstractions;
 using Helpdesk.Core.Repositories;
 using MediatR;
