@@ -25,7 +25,7 @@ public class CommentController : ControllerBase
     }
 
     [HttpGet("{ticketId}")]
-    public async Task<ActionResult<IEnumerable<CommentsDto>>> GetAllCommentByTicketId([FromQuery] Guid ticketId)
+    public async Task<ActionResult<IEnumerable<CommentsDto>>> GetAllCommentByTicketId(Guid ticketId)
     {
         var query = new GetCommentsToTicketQuery(ticketId);
         return Ok(await _mediator.Send(query));
