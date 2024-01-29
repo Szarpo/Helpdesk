@@ -17,6 +17,7 @@ public static class Extensions
         services.AddScoped<IClock, Clock>();
         services.AddScoped<ITicketRepository, TicketRepository>();
         services.AddScoped<ICommentRepository, CommentRepository>();
+        services.AddScoped<IUserRepository, UserRepository>();
         
         services.AddPostgres(configuration);
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
