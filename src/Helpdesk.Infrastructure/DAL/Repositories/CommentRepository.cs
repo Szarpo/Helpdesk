@@ -21,5 +21,13 @@ internal class CommentRepository : ICommentRepository
         await _dbContext.SaveChangesAsync();
     }
 
+    public async Task<Comment> GetById(Guid ticketId) => await _comments.FirstOrDefaultAsync(x => x.TicketId == ticketId);
     
+    public async Task Delete(IEnumerable<Comment> comment)
+    {
+         _comments.RemoveRange(comment);
+       await _dbContext.SaveChangesAsync();
+    }
+
+    public async Task<IEnumerable<Comment>> GetCommentsWithTicketId(Guid ticketId) => await _comments.Where(x => x.TicketId == ticketId).ToListAsync();
 }

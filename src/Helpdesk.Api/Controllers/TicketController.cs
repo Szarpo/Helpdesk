@@ -44,5 +44,13 @@ public class TicketController : ControllerBase
         var query =  new GetTicketsByUserQuery(userId);
         return Ok(await _mediator.Send(query));
     }
+
+    [HttpDelete("{ticketId}")]
+    public async Task<ActionResult> DeleteTicket(Guid ticketId)
+    {
+        var command = new DeleteTicketCommand(ticketId);
+        await _mediator.Send(command);
+        return Ok();
+    }
     
 }

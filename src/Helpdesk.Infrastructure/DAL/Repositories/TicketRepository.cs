@@ -7,22 +7,30 @@ namespace Helpdesk.Infrastructure.DAL.Repositories;
 internal sealed class TicketRepository : ITicketRepository
 {
 
-    private readonly DbSet<Core.Entities.Ticket> _titles;
+    private readonly DbSet<Core.Entities.Ticket> _tickets;
+    private readonly DbSet<Comment> _comments;
     private readonly HelpdeskDbContext _dbContext;
 
     public TicketRepository(HelpdeskDbContext dbContext)
     {
         _dbContext = dbContext;
-        _titles = _dbContext.Tickets;
+        _tickets = _dbContext.Tickets;
+        _comments = _dbContext.Comments;
     }
     
     public async  Task Add(Ticket ticket)
     {
-        await _titles.AddAsync(ticket);
+        await _tickets.AddAsync(ticket);
         await _dbContext.SaveChangesAsync();
     }
 
     public async Task<Ticket> GetById(Guid ticketId) => await _dbContext.Tickets.FirstOrDefaultAsync(x => x.Id == ticketId);
+    
+    public async Task Delete(Ticket ticket)
+    {
+        _tickets.RemoveRange(ticket);
+        await _dbContext.SaveChangesAsync();
+    }
 
     public Task<bool> IsExistId(Guid ticketId)
     {
