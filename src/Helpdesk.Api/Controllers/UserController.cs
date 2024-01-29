@@ -1,4 +1,6 @@
 using Helpdesk.Application.Commands.UserCommand;
+using Helpdesk.Application.DTO;
+using Helpdesk.Application.Queries.UserQuery;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,6 +23,20 @@ public class UserController : ControllerBase
     {
         await _mediator.Send(command);
         return Ok();
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<UsersDto>>> GetUsers([FromQuery] GetUsersQuery query)
+    {
+        return Ok(await _mediator.Send(query));
+    }
+
+    [HttpGet("{userId}")]
+    public async Task<ActionResult<UserDto>> GetUserById(Guid userId)
+    {
+        var query =  new GetUserQuery(userId);
+        
+        return Ok(await _mediator.Send(query));
     }
     
 }

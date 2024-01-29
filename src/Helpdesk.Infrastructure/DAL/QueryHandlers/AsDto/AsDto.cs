@@ -37,4 +37,21 @@ public static class AsDto
         Content = entity.Content,
         CreatedAt = entity.CreatedAt,
     };
+
+    public static UsersDto UsersAsDto(this User entity) => new()
+    {
+        Id = entity.Id,
+        Email = entity.Email,
+        Company = entity.Company,
+        Role = entity.Role
+    };
+    
+    public static UserDto UserAsDto(this User entity) => new()
+    {
+        Id = entity.Id,
+        Email = entity.Email,
+        Company = entity.Company,
+        Role = entity.Role
+    };
+
 }
