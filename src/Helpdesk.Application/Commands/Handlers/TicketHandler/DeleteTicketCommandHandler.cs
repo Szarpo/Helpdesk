@@ -1,4 +1,5 @@
 using Helpdesk.Application.Commands.TicketCommand;
+using Helpdesk.Core.Exceptions;
 using Helpdesk.Core.Repositories;
 using MediatR;
 
@@ -17,6 +18,13 @@ public class DeleteTicketCommandHandler : IRequestHandler<DeleteTicketCommand>
     
     public async Task Handle(DeleteTicketCommand request, CancellationToken cancellationToken)
     {
+        var isExist = await _ticketRepository.IsExistId(request.TicketId);
+
+        if (!isExist)
+        {
+            throw new IdNotExist($"TicketId: {request.TicketId}");
+        }
+        
         var ticket = await _ticketRepository.GetById(request.TicketId);
         var comments = await _commentRepository.GetCommentsWithTicketId(request.TicketId);
 

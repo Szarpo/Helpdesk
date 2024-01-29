@@ -32,10 +32,7 @@ internal sealed class TicketRepository : ITicketRepository
         await _dbContext.SaveChangesAsync();
     }
 
-    public Task<bool> IsExistId(Guid ticketId)
-    {
-        throw new NotImplementedException();
-    }
+    public async Task<bool> IsExistId(Guid ticketId) => await _tickets.AnyAsync(x => x.Id == ticketId);
 
- 
+    public async Task<bool> IsExistUserId(Guid userId) => await _tickets.AnyAsync(x => x.CreatorId == userId);
 }

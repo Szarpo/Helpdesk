@@ -8,4 +8,5 @@ public interface ITicketRepository
     Task<Ticket> GetById(Guid ticketId);
     Task Delete(Ticket ticket);
     Task<bool> IsExistId(Guid ticketId);
+    Task<bool> IsExistUserId(Guid userId);
 }
