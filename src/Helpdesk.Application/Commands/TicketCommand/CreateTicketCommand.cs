@@ -6,7 +6,5 @@ public sealed record CreateTicketCommand(
     Guid CreatorId, 
     string Title, 
     string Content, 
-    int Category, 
-    int Status, 
-    int State
+    int Category
     ): IRequest;

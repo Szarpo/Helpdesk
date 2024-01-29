@@ -11,7 +11,7 @@ public class Ticket
     public string Content { get; private set; }
     public Category Category { get; private set; }
     public Status Status { get; private set; }
-    public State State { get; private set; }
+    public State? State { get; private set; }
     public DateTime? CreatedAt { get; private set; } 
     public DateTime? ClosedAt { get; private set; }
     

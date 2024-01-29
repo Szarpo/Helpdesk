@@ -8,6 +8,7 @@ public sealed record State
 
     public State(StatesEnum value)
     {
+        
         Value = value;
     }
 

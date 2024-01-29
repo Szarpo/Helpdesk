@@ -19,7 +19,7 @@ public class CreateTicketCommandHandler : IRequestHandler<CreateTicketCommand>
     
     public async Task Handle(CreateTicketCommand request, CancellationToken cancellationToken)
     {
-        var (creatorId, title, content,category,status, state) = request;
+        var (creatorId, title, content,category) = request;
 
         var currentTime = _clock.Current().AddHours(1);
         
@@ -28,8 +28,8 @@ public class CreateTicketCommandHandler : IRequestHandler<CreateTicketCommand>
             title: title,
             content: content,
             category: category,
-            status: status,
-            state: state,
+            status: 0,
+            state: 0,
             createdAt: currentTime
         );
 

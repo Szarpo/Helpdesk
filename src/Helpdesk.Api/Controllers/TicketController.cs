@@ -37,5 +37,12 @@ public class TicketController : ControllerBase
         var query = new GetTicketByIdQuery(ticketId);
         return Ok(await _mediator.Send(query));
     }
+
+    [HttpGet("by-user/{userId}")]
+    public async Task<ActionResult<IEnumerable<TicketsDto>>> GetTicketsByUser(Guid userId)
+    {
+        var query =  new GetTicketsByUserQuery(userId);
+        return Ok(await _mediator.Send(query));
+    }
     
 }
