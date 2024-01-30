@@ -25,8 +25,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/aafd123812304a688c97d6ddd56e360872c00/51/9b3c0e39/DeveloperExceptionPageMiddlewareImpl.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cf878a1b8ec14c0f8ee161a4fd25910c19c00/19/3616bdb9/WebApplication.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Helpdesk.Application/Commands/Handlers/TicketHandler/CreateTicketCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Helpdesk.Application/CommandHandlers/TicketHandler/CreateTicketCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -100,7 +101,7 @@
       <workItem from="1706287646248" duration="8344000" />
       <workItem from="1706352694951" duration="2672000" />
       <workItem from="1706355374453" duration="10131000" />
-      <workItem from="1706436953077" duration="29147000" />
+      <workItem from="1706436953077" duration="31795000" />
     </task>
     <servers />
   </component>

@@ -3,7 +3,7 @@ using Helpdesk.Core.Exceptions;
 using Helpdesk.Core.Repositories;
 using MediatR;
 
-namespace Helpdesk.Application.Commands.Handlers.TicketHandler;
+namespace Helpdesk.Application.CommandHandlers.TicketHandler;
 
 public class DeleteTicketCommandHandler : IRequestHandler<DeleteTicketCommand>
 {

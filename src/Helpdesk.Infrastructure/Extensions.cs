@@ -3,6 +3,7 @@ using Helpdesk.Core.Abstractions;
 using Helpdesk.Core.Repositories;
 using Helpdesk.Infrastructure.DAL;
 using Helpdesk.Infrastructure.DAL.Repositories;
+using Helpdesk.Infrastructure.Secure;
 using Helpdesk.Infrastructure.Time;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +21,7 @@ public static class Extensions
         services.AddScoped<IUserRepository, UserRepository>();
         
         services.AddPostgres(configuration);
+        services.AddSecure();
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
         
         return services;

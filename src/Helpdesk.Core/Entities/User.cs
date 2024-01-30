@@ -6,24 +6,27 @@ public class User
 {
     public Guid Id { get;  set; }
     public string Email { get; private set; }
+    public string Password { get; private set; }
     public string Company { get; private set; }
     public Role Role { get; private set; }
 
-    private User(Guid id, string email, string company, int role)
+    private User(Guid id, string email, string password, string company, int role)
     {
         Id = id;
         Email = email;
+        Password = password;
         Company = company;
         Role = role;
     }
     
     public User() {}
 
-    public static User Create(string email, string company, int role)
+    public static User Create(string email, string password, string company, int role)
     {
         return new User(
             id: Guid.NewGuid(),
             email: email,
+            password: password,
             company: company,
             role: role
             );

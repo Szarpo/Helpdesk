@@ -4,7 +4,7 @@ using Helpdesk.Core.Entities;
 using Helpdesk.Core.Repositories;
 using MediatR;
 
-namespace Helpdesk.Application.Commands.Handlers.CommentHandler;
+namespace Helpdesk.Application.CommandHandlers.CommentHandler;
 
 public class CreateCommentCommandHandler : IRequestHandler<CreateCommentCommand>
 {
