@@ -7,11 +7,11 @@ public class Ticket
     
     public Guid Id { get; set; }
     public Guid CreatorId { get; private set; }
-    public string Title { get; private set; }
+    public Title Title { get; private set; }
     public string Content { get; private set; }
     public Category Category { get; private set; }
     public Status Status { get; private set; }
-    public State? State { get; private set; }
+    public State State { get; private set; }
     public DateTime? CreatedAt { get; private set; } 
     public DateTime? ClosedAt { get; private set; }
     

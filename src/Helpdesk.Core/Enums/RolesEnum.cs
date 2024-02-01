@@ -3,6 +3,6 @@ namespace Helpdesk.Core.Enums;
 public enum RolesEnum
 {
     User,
-    Operator,
+    Agent,
     Admin, 
 }
