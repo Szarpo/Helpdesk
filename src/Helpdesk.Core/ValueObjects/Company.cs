@@ -16,5 +16,7 @@ public sealed record Company
         
         Value = value;
     }
-    
+
+    public static implicit operator string(Company company) => company.Value;
+    public static implicit operator Company(string company) => new Company(company);
 }   

@@ -7,7 +7,7 @@ public class User
     public Guid Id { get;  set; }
     public Email Email { get; private set; }
     public Password Password { get; private set; }
-    public string Company { get; private set; }
+    public Company Company { get; private set; }
     public Role Role { get; private set; }
     public UserStatus Status { get; private set; }
     
