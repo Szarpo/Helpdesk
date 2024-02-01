@@ -1,6 +1,6 @@
 namespace Helpdesk.Core.Enums;
 
-public enum StatesEnum
+public enum StateEnum
 {
     Started,
     Solved,

@@ -1,6 +1,6 @@
 namespace Helpdesk.Core.Enums;
 
-public enum RolesEnum
+public enum RoleEnum
 {
     User,
     Agent,

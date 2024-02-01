@@ -1,6 +1,6 @@
 namespace Helpdesk.Core.Enums;
 
-public enum StatusesEnum
+public enum TicketStatusEnum
 {
     Open,
     WorkInProgress,

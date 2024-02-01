@@ -28,7 +28,7 @@ public class CreateTicketCommandHandler : IRequestHandler<CreateTicketCommand>
             title: title,
             content: content,
             category: category,
-            status: 0,
+            ticketStatus: 0,
             state: 0,
             createdAt: currentTime
         );
