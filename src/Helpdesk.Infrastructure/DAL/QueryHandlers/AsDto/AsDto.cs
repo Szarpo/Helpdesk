@@ -12,7 +12,7 @@ public static class AsDto
         Title = entity.Title,
         Content = entity.Content,
         Category = entity.Category,
-        Status = entity.Status,
+        Status = entity.TicketStatus,
         State = entity.State,
         CreatedAt = entity.CreatedAt,
         ClosedAt = entity.ClosedAt
@@ -25,7 +25,7 @@ public static class AsDto
         Title = entity.Title,
         Content = entity.Content,
         Category = entity.Category,
-        Status = entity.Status,
+        Status = entity.TicketStatus,
         State = entity.State,
         CreatedAt = entity.CreatedAt,
         ClosedAt = entity.ClosedAt

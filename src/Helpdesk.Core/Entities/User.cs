@@ -5,30 +5,34 @@ namespace Helpdesk.Core.Entities;
 public class User
 {
     public Guid Id { get;  set; }
-    public string Email { get; private set; }
-    public string Password { get; private set; }
-    public string Company { get; private set; }
+    public Email Email { get; private set; }
+    public Password Password { get; private set; }
+    public Company Company { get; private set; }
     public Role Role { get; private set; }
+    public UserStatus Status { get; private set; }
+    
 
-    private User(Guid id, string email, string password, string company, int role)
+    private User(Guid id, string email, Password password, string company, int role, int status)
     {
         Id = id;
         Email = email;
         Password = password;
         Company = company;
         Role = role;
+        Status = status;
     }
     
     public User() {}
 
-    public static User Create(string email, string password, string company, int role)
+    public static User Create(string email, Password password, string company, int role, int status)
     {
         return new User(
             id: Guid.NewGuid(),
             email: email,
             password: password,
             company: company,
-            role: role
+            role: role,
+            status: status
             );
     }
     

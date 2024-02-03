@@ -11,10 +11,10 @@ public class TicketConfiguration : IEntityTypeConfiguration<Ticket>
     {
         builder.HasKey(x => x.Id);
         builder.Property(x => x.Category).HasConversion(x=> x.Value, x=> new Category(x));
-        builder.Property(x => x.Title);
+        builder.Property(x => x.Title).HasConversion(x=> x.Value, x=> new Title(x));
         builder.Property(x => x.CreatorId);
         builder.Property(x => x.Content);
-        builder.Property(x => x.Status).HasConversion(x=> x.Value, x=> new Status(x));
+        builder.Property(x => x.TicketStatus).HasConversion(x=> x.Value, x=> new TicketStatus(x));
         builder.Property(x => x.State).HasConversion(x=> x.Value, x=> new State(x));
         builder.Property(x => x.CreatedAt);
         builder.Property(x => x.ClosedAt);

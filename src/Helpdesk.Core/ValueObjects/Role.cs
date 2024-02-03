@@ -4,14 +4,14 @@ namespace Helpdesk.Core.ValueObjects;
 
 public sealed record Role
 {
-    public RolesEnum Value { get; }
+    public RoleEnum Value { get; }
 
-    public Role(RolesEnum value)
+    public Role(RoleEnum value)
     {
         Value = value;
     }
 
     public static implicit operator string(Role role) => role.Value.ToString();
-    public static implicit operator Role(int role) => new Role((RolesEnum)role);
+    public static implicit operator Role(int role) => new Role((RoleEnum)role);
     
 }

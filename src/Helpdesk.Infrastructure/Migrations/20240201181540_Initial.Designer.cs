@@ -13,8 +13,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Helpdesk.Infrastructure.Migrations
 {
     [DbContext(typeof(HelpdeskDbContext))]
-    [Migration("20240129190040_AddUserDb")]
-    partial class AddUserDb
+    [Migration("20240201181540_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -70,13 +70,10 @@ namespace Helpdesk.Infrastructure.Migrations
                     b.Property<Guid>("CreatorId")
                         .HasColumnType("uuid");
 
-                    
-                    
-                    
-                    b.Property<StatesEnum?>("State")
+                    b.Property<StateEnum?>("State")
                         .HasColumnType("integer");
 
-                    b.Property<StatusesEnum?>("Status")
+                    b.Property<TicketStatusEnum?>("TicketStatus")
                         .HasColumnType("integer");
 
                     b.Property<string>("Title")
@@ -99,7 +96,13 @@ namespace Helpdesk.Infrastructure.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("text");
 
-                    b.Property<RolesEnum?>("Role")
+                    b.Property<string>("Password")
+                        .HasColumnType("text");
+
+                    b.Property<RoleEnum?>("Role")
+                        .HasColumnType("integer");
+
+                    b.Property<UserStatusEnum?>("Status")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");

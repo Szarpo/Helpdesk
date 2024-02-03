@@ -31,24 +31,33 @@ public class TicketController : ControllerBase
         return Ok(await _mediator.Send(query));
     }
 
-    [HttpGet("{ticketId}")]
+    [HttpGet("{ticketId:guid}")]
     public async Task<ActionResult<TicketDto>> GetTicketBytId(Guid ticketId)
     {
         var query = new GetTicketByIdQuery(ticketId);
         return Ok(await _mediator.Send(query));
     }
 
-    [HttpGet("by-user/{userId}")]
+    [HttpGet("by-user/{userId:guid}")]
     public async Task<ActionResult<IEnumerable<TicketsDto>>> GetTicketsByUser(Guid userId)
     {
         var query =  new GetTicketsByUserQuery(userId);
         return Ok(await _mediator.Send(query));
     }
 
-    [HttpDelete("{ticketId}")]
+    [HttpDelete("{ticketId:guid}")]
     public async Task<ActionResult> DeleteTicket(Guid ticketId)
     {
         var command = new DeleteTicketCommand(ticketId);
+        await _mediator.Send(command);
+        return Ok();
+    }
+
+    [HttpPut("{ticketId:guid}")]
+    public async Task<ActionResult> ChangeStatus(Guid ticketId, [FromQuery] int status)
+    {
+        var command =  new ChangeStatusCommand(ticketId, status);
+
         await _mediator.Send(command);
         return Ok();
     }

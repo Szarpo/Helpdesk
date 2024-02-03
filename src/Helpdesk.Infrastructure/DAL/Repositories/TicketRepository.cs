@@ -32,6 +32,12 @@ internal sealed class TicketRepository : ITicketRepository
         await _dbContext.SaveChangesAsync();
     }
 
+    public async Task ChangeStatus(Ticket ticket)
+    {
+         _tickets.UpdateRange(ticket);
+         await _dbContext.SaveChangesAsync();
+    }
+
     public async Task<bool> IsExistId(Guid ticketId) => await _tickets.AnyAsync(x => x.Id == ticketId);
 
     public async Task<bool> IsExistUserId(Guid userId) => await _tickets.AnyAsync(x => x.CreatorId == userId);
