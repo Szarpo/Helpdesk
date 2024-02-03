@@ -45,5 +45,18 @@ public class Ticket
             closedAt: null
         );
     }
+
+    public void ChangeStatus(TicketStatus ticketStatus, State state)
+    {
+        TicketStatus = ticketStatus;
+        State = state;
+    }
+
+    public void CloseTheTicket(TicketStatus ticketStatus, State state, DateTime closedAt)
+    {
+        TicketStatus = ticketStatus;
+        State = state;
+        ClosedAt = closedAt;
+    }
     
 }
