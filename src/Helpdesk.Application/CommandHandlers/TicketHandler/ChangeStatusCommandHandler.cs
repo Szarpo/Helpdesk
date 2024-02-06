@@ -1,6 +1,6 @@
 using Helpdesk.Application.Commands.TicketCommand;
 using Helpdesk.Core.Abstractions;
-using Helpdesk.Core.Entities;
+using Helpdesk.Core.Enums;
 using Helpdesk.Core.Exceptions;
 using Helpdesk.Core.Repositories;
 using MediatR;
@@ -34,7 +34,7 @@ public class ChangeStatusCommandHandler : IRequestHandler<ChangeStatusCommand>
         
         var currentTime = _clock.Current();
 
-        if (ticket.TicketStatus == 0 || ticket.TicketStatus == 1 || ticket.TicketStatus == 2)
+        if (ticket.TicketStatus.Value is TicketStatusEnum.Open or TicketStatusEnum.Analysis or TicketStatusEnum.WorkInProgress)
         {
             ticket.ChangeStatus(
                 ticketStatus: status,
@@ -42,7 +42,7 @@ public class ChangeStatusCommandHandler : IRequestHandler<ChangeStatusCommand>
             );
         }
 
-        if (ticket.TicketStatus == 3 || ticket.TicketStatus == 4)
+        if (ticket.TicketStatus.Value is TicketStatusEnum.Solved or TicketStatusEnum.Rejected)
         {
             ticket.CloseTheTicket(
                 ticketStatus: status,

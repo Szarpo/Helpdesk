@@ -1,6 +1,5 @@
 using Helpdesk.Application.DTO;
 using Helpdesk.Application.Queries.UserQuery;
-using Helpdesk.Infrastructure.DAL.QueryHandlers.AsDto;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,8 +17,17 @@ internal sealed class GetUserQueryHandler : IRequestHandler<GetUserQuery, UserDt
     
     public async Task<UserDto> Handle(GetUserQuery request, CancellationToken cancellationToken)
     {
-        var user = await _dbContext.Users.AsNoTracking().FirstOrDefaultAsync(x => x.Id == request.UserId, cancellationToken: cancellationToken);
+        var user = await _dbContext.Users
+            .AsNoTracking()
+            .FirstOrDefaultAsync(x => x.Id == request.UserId, cancellationToken: cancellationToken);
 
-        return  user.UserAsDto();
+        var userDto = new UserDto(
+            user.Id,
+            user.Email,
+            user.Company,
+            user.Role
+            );
+
+        return userDto;
     }
 }

@@ -1,6 +1,7 @@
 using Helpdesk.Application.Commands.TicketCommand;
 using Helpdesk.Application.DTO;
 using Helpdesk.Application.Queries.TicketQuery;
+using Helpdesk.Core.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,8 +27,9 @@ public class TicketController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<TicketsDto>>> GetTickets([FromQuery] GetTicketsQuery query)
+    public async Task<ActionResult<PagedResult<TicketsDto>>> GetTickets([FromQuery] int pageSize, [FromQuery] int pageNumber)
     {
+        var query = new GetTicketsQuery(pageNumber, pageSize);
         return Ok(await _mediator.Send(query));
     }
 
@@ -39,9 +41,9 @@ public class TicketController : ControllerBase
     }
 
     [HttpGet("by-user/{userId:guid}")]
-    public async Task<ActionResult<IEnumerable<TicketsDto>>> GetTicketsByUser(Guid userId)
+    public async Task<ActionResult<PagedResult<TicketsDto>>> GetTicketsByUser(Guid userId, [FromQuery] int pageSize, [FromQuery] int pageNumber)
     {
-        var query =  new GetTicketsByUserQuery(userId);
+        var query =  new GetTicketsByUserQuery(userId, pageSize, pageNumber);
         return Ok(await _mediator.Send(query));
     }
 

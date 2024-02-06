@@ -1,6 +1,7 @@
 using Helpdesk.Application.Commands.UserCommand;
 using Helpdesk.Application.DTO;
 using Helpdesk.Application.Queries.UserQuery;
+using Helpdesk.Core.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,12 +27,14 @@ public class UserController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<UsersDto>>> GetUsers([FromQuery] GetUsersQuery query)
+    public async Task<ActionResult<PagedResult<UsersDto>>> GetUsers([FromQuery] int pageSize, int pageNumber)
     {
+        var query = new GetUsersQuery(pageSize, pageNumber);
+        
         return Ok(await _mediator.Send(query));
     }
 
-    [HttpGet("{userId}")]
+    [HttpGet("{userId:guid}")]
     public async Task<ActionResult<UserDto>> GetUserById(Guid userId)
     {
         var query =  new GetUserQuery(userId);
