@@ -1,7 +1,6 @@
 using Helpdesk.Application.DTO;
 using Helpdesk.Application.Queries.TicketQuery;
 using Helpdesk.Core.Exceptions;
-using Helpdesk.Core.Models;
 using Helpdesk.Core.Repositories;
 using MediatR;
 using Microsoft.EntityFrameworkCore;

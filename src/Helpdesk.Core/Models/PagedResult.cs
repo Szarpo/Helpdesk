@@ -8,12 +8,12 @@ public class PagedResult<T>
     public int ItemsTo { get; set; }
     public int TotalItemsCount { get; set; }
 
-    public PagedResult(List<T> items,int totalPages, int pageSize, int pageNumber)
+    public PagedResult(List<T> items, int totalItemsCount, int pageSize, int pageNumber)
     {
         Items = items;
-        TotalPages = totalPages;
+        TotalItemsCount = totalItemsCount;
         ItemsFrom = pageSize * (pageNumber - 1) + 1;
-        ItemsTo = ItemsFrom * pageSize -1;
-        TotalItemsCount = (int)Math.Ceiling(TotalPages / (double)pageSize);
+        ItemsTo = ItemsFrom + pageSize -1;
+        TotalPages = (int)Math.Ceiling(totalItemsCount / (double)pageSize);
     }
 }

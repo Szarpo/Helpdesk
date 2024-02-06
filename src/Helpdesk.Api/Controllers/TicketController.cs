@@ -27,8 +27,9 @@ public class TicketController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<PagedResult<TicketsDto>>> GetTickets([FromQuery] GetTicketsQuery query)
+    public async Task<ActionResult<PagedResult<TicketsDto>>> GetTickets([FromQuery] int pageSize, [FromQuery] int pageNumber)
     {
+        var query = new GetTicketsQuery(pageNumber, pageSize);
         return Ok(await _mediator.Send(query));
     }
 
