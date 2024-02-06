@@ -32,7 +32,11 @@ public static class Extensions
     public static WebApplication UseInfrastructure(this WebApplication app)
     {
     
-   
+        app.UseReDoc(reDoc =>
+        {
+            reDoc.RoutePrefix = "docs";
+            reDoc.SpecUrl("/swagger/v1/swagger.json");
+        });
         
         return app;
     }
