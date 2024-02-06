@@ -17,6 +17,12 @@ builder.Services.AddControllers();
 
 var app = builder.Build();
 
+app.UseReDoc(reDoc =>
+{
+    reDoc.RoutePrefix = "docs";
+    reDoc.SpecUrl("/swagger/v1/swagger.json");
+});
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
