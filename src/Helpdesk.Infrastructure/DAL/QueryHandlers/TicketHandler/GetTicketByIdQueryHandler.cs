@@ -1,14 +1,14 @@
 using Helpdesk.Application.DTO;
 using Helpdesk.Application.Queries.TicketQuery;
 using Helpdesk.Core.Exceptions;
+using Helpdesk.Core.Models;
 using Helpdesk.Core.Repositories;
-using Helpdesk.Infrastructure.DAL.QueryHandlers.AsDto;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Helpdesk.Infrastructure.DAL.QueryHandlers.TicketHandler;
 
-internal sealed class GetTicketByIdQueryHandler : IRequestHandler<GetTicketByIdQuery, TicketDto>
+internal sealed class GetTicketByIdQueryHandler : IRequestHandler<GetTicketByIdQuery,TicketDto>
 {
     private readonly HelpdeskDbContext _dbContext;
     private readonly ITicketRepository _ticketRepository;
@@ -28,9 +28,25 @@ internal sealed class GetTicketByIdQueryHandler : IRequestHandler<GetTicketByIdQ
         {
             throw new IdNotExist($"TicketId: {request.TicketId}");
         }
-        
-        var ticket = await _dbContext.Tickets.AsNoTracking().FirstOrDefaultAsync(x => x.Id == request.TicketId, cancellationToken: cancellationToken);
 
-        return ticket.TicketByIdAsDto();
+        var ticket = await _dbContext.Tickets
+            .AsNoTracking()
+            .FirstOrDefaultAsync(x => x.Id == request.TicketId, cancellationToken: cancellationToken);
+
+        var ticketDto = new TicketDto(
+            ticket.Id, 
+            ticket.CreatorId, 
+            ticket.Title, 
+            ticket.Content, 
+            ticket.Category,
+            ticket.TicketStatus, 
+            ticket.State, 
+            ticket.CreatedAt, 
+            ticket.ClosedAt
+            
+            );
+            
+
+        return ticketDto;
     }
 }

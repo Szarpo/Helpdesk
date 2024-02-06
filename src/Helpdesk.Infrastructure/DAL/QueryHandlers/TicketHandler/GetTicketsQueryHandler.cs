@@ -1,12 +1,12 @@
 using Helpdesk.Application.DTO;
 using Helpdesk.Application.Queries.TicketQuery;
-using Helpdesk.Infrastructure.DAL.QueryHandlers.AsDto;
+using Helpdesk.Core.Models;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Helpdesk.Infrastructure.DAL.QueryHandlers.TicketHandler;
 
-internal sealed class GetTicketsQueryHandler : IRequestHandler<GetTicketsQuery, IEnumerable<TicketsDto>>
+internal sealed class GetTicketsQueryHandler : IRequestHandler<GetTicketsQuery, PagedResult<TicketsDto>>
 {
     private readonly HelpdeskDbContext _dbContext;
 
@@ -15,10 +15,17 @@ internal sealed class GetTicketsQueryHandler : IRequestHandler<GetTicketsQuery, 
         _dbContext = dbContext;
     }
     
-    public async Task<IEnumerable<TicketsDto>> Handle(GetTicketsQuery request, CancellationToken cancellationToken)
+    public async Task<PagedResult<TicketsDto>> Handle(GetTicketsQuery request, CancellationToken cancellationToken)
     {
-        var tickets =  _dbContext.Tickets.AsNoTracking().Select(x => x.TicketsAsDto());
-        
-        return await tickets.ToListAsync();
+        var ticketDtosDto = await _dbContext.Tickets
+            .Skip(request.PageSize * (request.PageNumber - 1))
+            .Take(request.PageSize)
+            .Select(x=> new TicketsDto(x.Id, x.CreatorId, x.Title, x.Content, x.Category, x.TicketStatus, x.State, x.CreatedAt, x.ClosedAt) )
+            .AsNoTracking()
+            .ToListAsync(cancellationToken: cancellationToken);
+
+        var totalCount = await _dbContext.Tickets.CountAsync(cancellationToken: cancellationToken);
+
+        return new PagedResult<TicketsDto>(ticketDtosDto, totalCount, request.PageSize, request.PageNumber);
     }
 }
