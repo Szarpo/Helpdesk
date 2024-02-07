@@ -2,6 +2,7 @@ using System.Security.Authentication;
 using System.Security.Claims;
 using Helpdesk.Application.Auth;
 using Helpdesk.Core.Entities;
+using Helpdesk.Core.Exceptions;
 using Helpdesk.Core.Repositories;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -32,10 +33,10 @@ public class CookieAuthorizationService : ICookieAuthorizationService
             throw new InvalidCredentialException();
         }
 
-       // if (!user.IsActive)
-       // {
-           // throw new UserIsNotActiveException(user.Email);
-        //}
+        if (user.IsActive == false) 
+        {
+            throw new UserIsNotActiveException(user.Email);
+        }
 
         var passwordVerificationResult =  _passwordHasher.VerifyHashedPassword(user, user.Password, password);
 
