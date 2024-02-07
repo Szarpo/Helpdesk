@@ -29,7 +29,7 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand>
             password: securePassword,
             company: company,
             role: 0,
-            status: 0
+            isActive: true
             );
 
         await _userRepository.Add(user);

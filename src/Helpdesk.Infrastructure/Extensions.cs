@@ -1,6 +1,9 @@
 using System.Reflection;
+using Helpdesk.Application.Auth;
+using Helpdesk.Application.Security;
 using Helpdesk.Core.Abstractions;
 using Helpdesk.Core.Repositories;
+using Helpdesk.Infrastructure.Auth;
 using Helpdesk.Infrastructure.DAL;
 using Helpdesk.Infrastructure.DAL.Repositories;
 using Helpdesk.Infrastructure.Secure;
@@ -16,14 +19,17 @@ public static class Extensions
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
 
-        services.AddScoped<IClock, Clock>();
+        services.AddHttpContextAccessor();
+        services.AddPostgres(configuration);
+        services.AddSecure();
+        services.AddSingleton<IClock, Clock>();
         services.AddScoped<ITicketRepository, TicketRepository>();
         services.AddScoped<ICommentRepository, CommentRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
-        
-        
-        services.AddPostgres(configuration);
-        services.AddSecure();
+        services.AddScoped<ICookieAuthorizationService, CookieAuthorizationService>();
+
+
+        services.AddAuthorizationCore(x => x.AddPolicies());
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
         
         return services;
