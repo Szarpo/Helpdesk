@@ -3,6 +3,7 @@ using Helpdesk.Application.DTO;
 using Helpdesk.Application.Queries.UserQuery;
 using Helpdesk.Core.Models;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Helpdesk.Api.Controllers;
@@ -27,6 +28,7 @@ public class UserController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize]
     public async Task<ActionResult<PagedResult<UsersDto>>> GetUsers([FromQuery] int pageSize, int pageNumber)
     {
         var query = new GetUsersQuery(pageSize, pageNumber);
