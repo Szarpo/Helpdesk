@@ -38,7 +38,7 @@ public class CreateCommentCommandHandler : IRequestHandler<CreateCommentCommand>
 
         var comment = Comment.Create(
             ticketId: ticketId,
-            userId: creatorId,
+            creatorId: creatorId,
             content: content,
             createdAt: currentTime
             );
