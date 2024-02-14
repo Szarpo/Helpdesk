@@ -77,5 +77,15 @@ public class TicketController : ControllerBase
         await _mediator.Send(command);
         return Ok();
     }
+
+    [HttpGet("authorize-user")]
+    [Authorize]
+    [SwaggerOperation("Get all tickets created by authorize user")]
+    public async Task<ActionResult<PagedResult<TicketsDto>>> GetTicketsByAuthorizeUser([FromQuery] int pageSize, 
+        [FromQuery] int pageNumber)
+    {
+        var query = new GetTicketsAuthorizeUserQuery(pageSize, pageNumber);
+        return Ok(await _mediator.Send(query));
+    }
     
 }

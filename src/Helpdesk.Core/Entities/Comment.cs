@@ -8,11 +8,11 @@ public class Comment
     public string Content { get; private set; }
     public DateTime CreatedAt { get; private set; }
 
-    private Comment(Guid id, Guid ticketId, Guid userId, string content, DateTime createdAt)
+    private Comment(Guid id, Guid ticketId, Guid creatorId, string content, DateTime createdAt)
     {
         Id = id;
         TicketId = ticketId;
-        UserId = userId;
+        UserId = creatorId;
         Content = content;
         CreatedAt = createdAt;
     }
@@ -21,12 +21,12 @@ public class Comment
 
 
 
-    public static Comment Create(Guid ticketId, Guid userId, string content, DateTime createdAt)
+    public static Comment Create(Guid ticketId, Guid creatorId, string content, DateTime createdAt)
     {
         return new Comment(
             id: Guid.NewGuid(),
             ticketId: ticketId,
-            userId: userId,
+            creatorId: creatorId,
             content: content, 
             createdAt: createdAt
             );
