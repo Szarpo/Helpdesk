@@ -14,6 +14,6 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(x => x.Password).HasConversion(x => x.Value, x => new Password(x));
         builder.Property(x => x.Company).HasConversion(x=> x.Value, x=> new Company(x));
         builder.Property(x => x.Role).HasConversion(x=> x.Value, x=> new Role(x));
-        builder.Property(x => x.IsActive).HasConversion(x => x.Value, x => new IsActive(x));
+        builder.Property(x => x.IsActive);
     }
 }

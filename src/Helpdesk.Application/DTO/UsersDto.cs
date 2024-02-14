@@ -5,5 +5,6 @@ public record UsersDto
      Guid Id,
      string Email,
      string Company,
-     string Role    
+     string Role,
+     bool IsActive
 );

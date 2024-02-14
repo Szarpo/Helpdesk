@@ -9,7 +9,7 @@ public class User
     public Password Password { get; private set; }
     public Company Company { get; private set; }
     public Role Role { get; private set; }
-    public IsActive IsActive { get; private set; }
+    public bool IsActive { get; private set; }
     
 
     private User(Guid id, string email, Password password, string company, int role, bool isActive)
