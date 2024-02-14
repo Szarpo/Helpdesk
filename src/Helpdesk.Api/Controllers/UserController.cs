@@ -21,6 +21,7 @@ public class UserController : ControllerBase
     }
     
     [HttpPost]
+    [Authorize(Policy = "is-admin")]
     public async Task<ActionResult> CreateUser([FromBody] CreateUserCommand command)
     {
         await _mediator.Send(command);
@@ -28,7 +29,7 @@ public class UserController : ControllerBase
     }
 
     [HttpGet]
-    [Authorize]
+    [Authorize(Policy = "is-admin")]
     public async Task<ActionResult<PagedResult<UsersDto>>> GetUsers([FromQuery] int pageSize, int pageNumber)
     {
         var query = new GetUsersQuery(pageSize, pageNumber);
@@ -37,6 +38,7 @@ public class UserController : ControllerBase
     }
 
     [HttpGet("{userId:guid}")]
+    [Authorize]
     public async Task<ActionResult<UserDto>> GetUserById(Guid userId)
     {
         var query =  new GetUserQuery(userId);

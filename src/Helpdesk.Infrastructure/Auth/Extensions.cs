@@ -8,7 +8,17 @@ public static class Extensions
     {
         options.AddPolicy("is-admin", policy =>
         {
-            policy.RequireRole("admin");
+            policy.RequireRole("Admin");
+        });
+        
+        options.AddPolicy("is-agent", policy =>
+        {
+            policy.RequireRole("Agent");
+        });
+        
+        options.AddPolicy("is-user", policy =>
+        {
+            policy.RequireRole("User");
         });
     }
 }

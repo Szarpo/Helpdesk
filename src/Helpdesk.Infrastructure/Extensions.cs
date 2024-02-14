@@ -56,7 +56,6 @@ public static class Extensions
                 };
             }); 
         
-        
         services.AddHttpContextAccessor();
         services.AddPostgres(configuration);
         services.AddSecure();
@@ -65,8 +64,6 @@ public static class Extensions
         services.AddScoped<ICommentRepository, CommentRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<ICookieAuthorizationService, CookieAuthorizationService>();
-
-    
         
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
         
