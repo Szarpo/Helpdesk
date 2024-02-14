@@ -7,4 +7,5 @@ public interface IUserRepository
 {
     Task Add(User user);
     Task<User> GetUser(Email email);
+    Task<bool> IsExist(Guid userId);
 }

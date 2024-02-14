@@ -47,7 +47,7 @@ public class CookieAuthorizationService : ICookieAuthorizationService
 
         var claims = new List<Claim>
         {
-            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+            new Claim(ClaimTypes.Name, user.Id.ToString()),
             new Claim(ClaimTypes.Role, user.Role),
         };
 

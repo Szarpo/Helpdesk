@@ -23,4 +23,5 @@ internal  class UserRepository : IUserRepository
     }
 
     public async Task<User> GetUser(Email email) => await _users.FirstOrDefaultAsync(x => x.Email == email);
+    public async Task<bool> IsExist(Guid userId) => await _users.AnyAsync(x => x.Id == userId);
 }

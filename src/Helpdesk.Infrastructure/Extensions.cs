@@ -19,8 +19,7 @@ public static class Extensions
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-
-        services.AddHttpContextAccessor()
+        services
             .AddPostgres(configuration)
             .AddSecure();
         
@@ -55,8 +54,7 @@ public static class Extensions
                     return Task.CompletedTask;
                 };
             }); 
-        
-        services.AddHttpContextAccessor();
+       
         services.AddPostgres(configuration);
         services.AddSecure();
         services.AddSingleton<IClock, Clock>();

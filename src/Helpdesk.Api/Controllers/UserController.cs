@@ -45,5 +45,14 @@ public class UserController : ControllerBase
         
         return Ok(await _mediator.Send(query));
     }
+
+    [HttpGet("authorize-user")]
+    [Authorize]
+    public async Task<ActionResult<UserDto>> GetAuthorizeUser()
+    {
+        var query =  new GetAuthorizeUserQuery();
+        
+        return Ok(await _mediator.Send(query));
+    }
     
 }
