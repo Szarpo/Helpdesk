@@ -3,7 +3,9 @@ using Helpdesk.Application.DTO;
 using Helpdesk.Application.Queries.CommentQuery;
 using Helpdesk.Core.Models;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace Helpdesk.Api.Controllers;
 
@@ -19,6 +21,8 @@ public class CommentController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize]
+    [SwaggerOperation("Add comment to ticket")]
     public async Task<ActionResult> CreateComment([FromBody] CreateCommentCommand command)
     {
         await _mediator.Send(command);
@@ -26,6 +30,8 @@ public class CommentController : ControllerBase
     }
 
     [HttpGet("{ticketId:guid}")]
+    [Authorize]
+    [SwaggerOperation("Get all comment by ticket ID")]
     public async Task<ActionResult<PagedResult<CommentsDto>>> GetAllCommentByTicketId(Guid ticketId, [FromQuery] int pageSize, int pageNumber)
     {
         var query = new GetCommentsToTicketQuery(ticketId, pageSize, pageNumber);

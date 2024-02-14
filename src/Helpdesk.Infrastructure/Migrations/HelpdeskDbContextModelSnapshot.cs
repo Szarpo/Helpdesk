@@ -93,13 +93,13 @@ namespace Helpdesk.Infrastructure.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("text");
 
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("Password")
                         .HasColumnType("text");
 
                     b.Property<RoleEnum?>("Role")
-                        .HasColumnType("integer");
-
-                    b.Property<UserStatusEnum?>("Status")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");

@@ -13,7 +13,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Helpdesk.Infrastructure.Migrations
 {
     [DbContext(typeof(HelpdeskDbContext))]
-    [Migration("20240201181540_Initial")]
+    [Migration("20240207214832_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -96,13 +96,13 @@ namespace Helpdesk.Infrastructure.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("text");
 
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("Password")
                         .HasColumnType("text");
 
                     b.Property<RoleEnum?>("Role")
-                        .HasColumnType("integer");
-
-                    b.Property<UserStatusEnum?>("Status")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");

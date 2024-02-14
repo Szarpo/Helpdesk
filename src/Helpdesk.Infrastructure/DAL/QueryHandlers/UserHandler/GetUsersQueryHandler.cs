@@ -25,7 +25,8 @@ internal sealed class GetUsersQueryHandler : IRequestHandler<GetUsersQuery, Page
                 x.Id,
                 x.Email,
                 x.Company,
-                x.Role
+                x.Role,
+                x.IsActive
                 ))
             .AsNoTracking()
             .ToListAsync(cancellationToken: cancellationToken);

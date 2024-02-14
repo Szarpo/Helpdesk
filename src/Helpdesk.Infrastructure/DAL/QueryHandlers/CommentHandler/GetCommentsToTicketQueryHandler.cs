@@ -19,6 +19,7 @@ internal class GetCommentsToTicketQueryHandler : IRequestHandler<GetCommentsToTi
     {
 
         var commentdtos =  await _dbContext.Comments
+            .OrderByDescending(x => x.CreatedAt)
             .Skip(request.PageSize * (request.PageNumber -1))
             .Take(request.PageSize)
             .AsNoTracking()

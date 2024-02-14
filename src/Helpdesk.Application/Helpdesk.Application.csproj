@@ -14,8 +14,4 @@
       <ProjectReference Include="..\Helpdesk.Core\Helpdesk.Core.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="CommandHandlers\" />
-    </ItemGroup>
-
 </Project>

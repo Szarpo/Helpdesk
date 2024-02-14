@@ -54,7 +54,7 @@ namespace Helpdesk.Infrastructure.Migrations
                     Password = table.Column<string>(type: "text", nullable: true),
                     Company = table.Column<string>(type: "text", nullable: true),
                     Role = table.Column<int>(type: "integer", nullable: true),
-                    Status = table.Column<int>(type: "integer", nullable: true)
+                    IsActive = table.Column<bool>(type: "boolean", nullable: true)
                 },
                 constraints: table =>
                 {
