@@ -5,6 +5,7 @@ using Helpdesk.Core.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace Helpdesk.Api.Controllers;
 
@@ -22,6 +23,7 @@ public class TicketController : ControllerBase
     
     [HttpPost]
     [Authorize]
+    [SwaggerOperation("Create ticket")]
     public async Task<ActionResult> CreateTicket([FromBody] CreateTicketCommand command)
     {
         await _mediator.Send(command);
@@ -30,6 +32,7 @@ public class TicketController : ControllerBase
 
     [HttpGet]
     [Authorize]
+    [SwaggerOperation("Get all tickets")]
     public async Task<ActionResult<PagedResult<TicketsDto>>> GetTickets([FromQuery] int pageSize, [FromQuery] int pageNumber)
     {
         var query = new GetTicketsQuery(pageNumber, pageSize);
@@ -38,6 +41,7 @@ public class TicketController : ControllerBase
 
     [HttpGet("{ticketId:guid}")]
     [Authorize]
+    [SwaggerOperation("Get ticket by ID")]
     public async Task<ActionResult<TicketDto>> GetTicketBytId(Guid ticketId)
     {
         var query = new GetTicketByIdQuery(ticketId);
@@ -46,6 +50,7 @@ public class TicketController : ControllerBase
 
     [HttpGet("by-user/{userId:guid}")]
     [Authorize]
+    [SwaggerOperation("Get all tickets of the selected user")]
     public async Task<ActionResult<PagedResult<TicketsDto>>> GetTicketsByUser(Guid userId, [FromQuery] int pageSize, [FromQuery] int pageNumber)
     {
         var query =  new GetTicketsByUserQuery(userId, pageSize, pageNumber);
@@ -54,6 +59,7 @@ public class TicketController : ControllerBase
 
     [HttpDelete("{ticketId:guid}")]
     [Authorize(Policy = "is-admin")]
+    [SwaggerOperation("Delete selected ticket")]
     public async Task<ActionResult> DeleteTicket(Guid ticketId)
     {
         var command = new DeleteTicketCommand(ticketId);
@@ -63,6 +69,7 @@ public class TicketController : ControllerBase
 
     [HttpPut("{ticketId:guid}")]
     [Authorize(Policy = "is-agent")]
+    [SwaggerOperation("Change ticket status")]
     public async Task<ActionResult> ChangeStatus(Guid ticketId, [FromQuery] int status)
     {
         var command =  new ChangeStatusCommand(ticketId, status);

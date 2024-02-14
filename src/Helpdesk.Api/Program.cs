@@ -10,7 +10,9 @@ builder.Services
     .AddApplication();
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(
+    c=> c.EnableAnnotations()
+    );
 
 
 var app = builder.Build();

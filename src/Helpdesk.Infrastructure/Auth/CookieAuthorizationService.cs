@@ -58,8 +58,5 @@ public class CookieAuthorizationService : ICookieAuthorizationService
 
     }
 
-    public Task SignOut()
-    {
-        throw new NotImplementedException();
-    }
+    public async Task SignOut() => await _httpContextAccessor.HttpContext!.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 }
