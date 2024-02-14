@@ -22,6 +22,20 @@ internal  class UserRepository : IUserRepository
         await _dbContext.SaveChangesAsync();
     }
 
-    public async Task<User> GetUser(Email email) => await _users.FirstOrDefaultAsync(x => x.Email == email);
+    public async Task<User> GetUserByEmail(Email email) => await _users.FirstOrDefaultAsync(x => x.Email == email);
+    public async Task<User> GetById(Guid userId) => await _users.FirstOrDefaultAsync(x => x.Id == userId);
+
+    public async Task ChangeRole(User user)
+    {
+         _users.UpdateRange(user);
+        await _dbContext.SaveChangesAsync();
+    }
+
+    public async Task ChangeActivation(User user)
+    {
+        _users.UpdateRange(user);
+       await _dbContext.SaveChangesAsync();
+    }
+
     public async Task<bool> IsExist(Guid userId) => await _users.AnyAsync(x => x.Id == userId);
 }

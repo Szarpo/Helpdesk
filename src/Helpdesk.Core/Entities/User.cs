@@ -35,6 +35,15 @@ public class User
             isActive: isActive
             );
     }
-    
+
+    public void ChangeRole(int role)
+    {
+        Role = role;
+    }
+
+    public void ChangeActivation(bool activation)
+    {
+        IsActive = activation;
+    }
     
 }

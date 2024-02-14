@@ -54,5 +54,23 @@ public class UserController : ControllerBase
         
         return Ok(await _mediator.Send(query));
     }
+
+    [HttpPut("change-role/{userId:guid}")]
+    [Authorize(Policy = "is-admin")]
+    public async Task<ActionResult> ChangeRole(Guid userId, [FromQuery] int role)
+    {
+        var query = new ChangeUserRoleCommand(userId, role);
+        await _mediator.Send(query);
+        return Ok();
+    }
+
+    [HttpPut("change-activity/{userId:guid}")]
+    [Authorize(Policy = "is-admin")]
+    public async Task<ActionResult> ChangeActivation(Guid userId, [FromQuery] bool activation)
+    {
+        var query = new ChangeUserActivationCommand(userId, activation);
+        await _mediator.Send(query);
+        return Ok();
+    }
     
 }

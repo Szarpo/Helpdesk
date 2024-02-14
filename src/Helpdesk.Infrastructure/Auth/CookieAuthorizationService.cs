@@ -26,7 +26,7 @@ public class CookieAuthorizationService : ICookieAuthorizationService
     
     public async Task SignIn(string email, string password)
     {
-        var user = await _userRepository.GetUser(email);
+        var user = await _userRepository.GetUserByEmail(email);
 
         if (user is null)
         {
