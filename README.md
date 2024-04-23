@@ -6,3 +6,5 @@ Project is created with:
 * .NET8
 * Entity Framework
 * PostgreSQL
+* MediatR
+* CQRS
